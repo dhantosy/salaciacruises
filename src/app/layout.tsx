@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from 'next/script';
 import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 
@@ -17,7 +18,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <meta name="google-site-verification" content="aa80ENjALuImws2FYy0YAOUWyWPpMnROvY1G9NXoT64" />
+      </head>
+      <body className={inter.className}>
+        {children}
+        <Script async src='https://www.googletagmanager.com/gtag/js?id=G-EMTF70B514' strategy='afterInteractive' />
+        <Script id='google-analytics' strategy='afterInteractive'>
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', 'G-EMTF70B514');
+        `}
+        </Script>
+      </body>
     </html>
   );
 }
